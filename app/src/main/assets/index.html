@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>WiFiWatchdog Main</title>
+    <link rel="stylesheet" href="css/styles.css?v=1.0">
+</head>
+<body>
+    <div class="menu-box">
+
+    </div>
+    <div class="content-box">
+        <div id="items">
+            <div class="item"><span class="date">A</span><span class="msg">B</span></div>
+            <div class="item"><span class="date">C</span><span class="msg">D</span></div>
+        </div>
+        <div class="buttons">
+            <button id="reload" onclick="loadItems()">RELOAD</button>
+            <button id="clear" onclick="deleteAll()">CLEAR ALL</button>
+            <button id="settings" onclick="openSettings()">SETTINGS</button>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/debug.js"></script>
+</body>
+</html>

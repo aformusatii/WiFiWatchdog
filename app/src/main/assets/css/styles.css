@@ -1,0 +1,25 @@
+div.settings div {
+    padding: 10px 0 10px 0;
+}
+
+label.settings {
+    display: inline-block;
+    width: 200px;
+}
+
+input.settings {
+    width: 300px;
+}
+
+.item {
+    /* https://visme.co/blog/wp-content/uploads/2016/09/website3-1024x512.png */
+    background-color: #659DBD;
+    border-bottom: solid 1px #fff;
+}
+.item .date {
+    padding-right: 5px;
+}
+
+button {
+    padding: 40px
+}
