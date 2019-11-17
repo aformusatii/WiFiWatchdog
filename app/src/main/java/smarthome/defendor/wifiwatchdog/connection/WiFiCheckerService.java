@@ -36,14 +36,25 @@ public class WiFiCheckerService extends Service {
             connectionResult.setOk(false);
         }
 
-        if (!connectionResult.isOk()) {
-            // toggle wifi
-            wifiManager.setWifiEnabled(false);
-            wifiManager.setWifiEnabled(true);
-        }
-
         EventLog eventLog = new EventLog(connectionResult.toString());
         EventLogService.saveEventLog(this.getApplicationContext(), eventLog);
+
+        if (!connectionResult.isOk()) {
+            EventLogService.saveEventLog(this.getApplicationContext(), new EventLog(String.format("Wifi enabled: %s", wifiManager.isWifiEnabled())));
+
+            // toggle wifi
+            boolean result = wifiManager.setWifiEnabled(false);
+            EventLogService.saveEventLog(this.getApplicationContext(), new EventLog(String.format("Turn off Wifi: %s", result)));
+
+            result = wifiManager.setWifiEnabled(true);
+            EventLogService.saveEventLog(this.getApplicationContext(), new EventLog(String.format("Turn on Wifi: %s", result)));
+
+            result = wifiManager.reassociate();
+            EventLogService.saveEventLog(this.getApplicationContext(), new EventLog(String.format("Reconnect to Wifi: %s", result)));
+
+            PowerManagerHelper powerManagerHelper = new PowerManagerHelper(this);
+            powerManagerHelper.wake();
+        }
 
         stopSelf();
 
@@ -52,11 +63,19 @@ public class WiFiCheckerService extends Service {
 
     @Override
     public void onDestroy() {
-        AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
+        AlarmManager alarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        PendingIntent pendingIntent = PendingIntent.getService(this,
+                0,
+                new Intent(this, WiFiCheckerService.class),
+                PendingIntent.FLAG_UPDATE_CURRENT);
+
+        alarm.cancel(pendingIntent);
+
         alarm.set(
                 alarm.RTC_WAKEUP,
                 System.currentTimeMillis() + (preferencesHelper.getCheckInterval() * 1000),
-                PendingIntent.getService(this, 0, new Intent(this, WiFiCheckerService.class), 0)
+                pendingIntent
         );
     }
 

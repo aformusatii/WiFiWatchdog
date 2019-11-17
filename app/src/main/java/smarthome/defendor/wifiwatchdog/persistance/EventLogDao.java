@@ -9,7 +9,7 @@ import androidx.room.Query;
 @Dao
 public interface EventLogDao {
 
-    @Query("SELECT * FROM event_logs ORDER BY insert_timestamp DESC LIMIT 1000")
+    @Query("SELECT * FROM event_logs ORDER BY insert_timestamp DESC, ID DESC LIMIT 1000")
     List<EventLog> getAll();
 
     @Insert
