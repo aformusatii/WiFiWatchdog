@@ -1,5 +1,6 @@
 package smarthome.defendor.wifiwatchdog.persistance;
 
+import java.util.Date;
 import java.util.List;
 
 import androidx.room.Dao;
@@ -17,5 +18,8 @@ public interface EventLogDao {
 
     @Query("DELETE FROM event_logs")
     void deleteAll();
+
+    @Query("DELETE FROM event_logs WHERE insert_timestamp < :date")
+    void deleteOlderThan(Date date);
 
 }

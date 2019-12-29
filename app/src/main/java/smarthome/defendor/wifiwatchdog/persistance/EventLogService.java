@@ -1,28 +1,23 @@
 package smarthome.defendor.wifiwatchdog.persistance;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
+import java.util.Date;
 import java.util.List;
+
+import smarthome.defendor.wifiwatchdog.utils.ContextTask;
 
 public class EventLogService {
 
     public static void saveEventLog(Context context, EventLog eventLog) {
-        new SaveTask(context).execute(eventLog);
-    }
+        new ContextTask<EventLog>(context).execute(new ContextTask.TheTask<EventLog>() {
+                @Override
+                public void execute(Context context, EventLog... args) {
+                    AppDatabase.getInstance(context).eventLogDao().insertAll(args);
+                }
 
-    public static class SaveTask extends AsyncTask<EventLog, Void, Void> {
+            }, eventLog);
 
-        private Context context;
-
-        public SaveTask(Context context) {
-            this.context = context;
-        }
-
-        protected Void doInBackground(EventLog... eventLogs) {
-            AppDatabase.getInstance(context).eventLogDao().insertAll(eventLogs);
-            return null;
-        }
     }
 
     public static List<EventLog> getEventLogs(Context context) {
@@ -31,6 +26,16 @@ public class EventLogService {
 
     public static void deleteAll(Context context) {
         AppDatabase.getInstance(context).eventLogDao().deleteAll();
+    }
+
+    public static void deleteOlderThan(Context context, Date date) {
+        new ContextTask<Date>(context).execute(new ContextTask.TheTask<Date>() {
+            @Override
+            public void execute(Context context, Date... args) {
+                AppDatabase.getInstance(context).eventLogDao().deleteOlderThan(args[0]);
+            }
+
+        }, date);
     }
 
 }

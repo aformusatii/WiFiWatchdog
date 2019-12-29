@@ -48,7 +48,7 @@ var deleteAll = function() {
 }
 
 var openSettings = function() {
-    document.location.href = 'settings.html';
+    window.location.href = 'settings.html';
 }
 
 loadItems();

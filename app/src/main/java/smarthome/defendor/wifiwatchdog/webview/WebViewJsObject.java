@@ -9,7 +9,7 @@ import java.util.List;
 
 import smarthome.defendor.wifiwatchdog.persistance.EventLog;
 import smarthome.defendor.wifiwatchdog.persistance.EventLogService;
-import smarthome.defendor.wifiwatchdog.webview.util.PreferencesHelper;
+import smarthome.defendor.wifiwatchdog.utils.PreferencesHelper;
 
 public class WebViewJsObject {
 

@@ -1,4 +1,4 @@
-package smarthome.defendor.wifiwatchdog.webview.util;
+package smarthome.defendor.wifiwatchdog.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;

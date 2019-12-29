@@ -1,10 +1,12 @@
-package smarthome.defendor.wifiwatchdog;
+package smarthome.defendor.wifiwatchdog.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import smarthome.defendor.wifiwatchdog.connection.WiFiCheckerService;
+import smarthome.defendor.wifiwatchdog.R;
+import smarthome.defendor.wifiwatchdog.services.WiFiCheckerService;
+import smarthome.defendor.wifiwatchdog.utils.SchedulerHelper;
 import smarthome.defendor.wifiwatchdog.webview.WebViewConfiguration;
 
 // https://ncona.com/2014/04/schedule-your-android-app-to-do-something-periodically/
@@ -21,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         webViewConfig.setupWebView();
 
         startWiFiCheckerService();
+
+        SchedulerHelper.scheduleCleanUpServiceExecution(this.getApplicationContext());
     }
 
     private void startWiFiCheckerService() {

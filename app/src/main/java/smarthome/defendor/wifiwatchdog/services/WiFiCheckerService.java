@@ -1,4 +1,4 @@
-package smarthome.defendor.wifiwatchdog.connection;
+package smarthome.defendor.wifiwatchdog.services;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -9,9 +9,12 @@ import android.net.wifi.WifiManager;
 import android.os.IBinder;
 
 import androidx.annotation.Nullable;
+import smarthome.defendor.wifiwatchdog.connection.ConnectionResult;
+import smarthome.defendor.wifiwatchdog.connection.ConnectionTester;
+import smarthome.defendor.wifiwatchdog.connection.PowerManagerHelper;
 import smarthome.defendor.wifiwatchdog.persistance.EventLog;
 import smarthome.defendor.wifiwatchdog.persistance.EventLogService;
-import smarthome.defendor.wifiwatchdog.webview.util.PreferencesHelper;
+import smarthome.defendor.wifiwatchdog.utils.PreferencesHelper;
 
 public class WiFiCheckerService extends Service {
 

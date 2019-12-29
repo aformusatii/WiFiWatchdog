@@ -10,7 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.ExecutionException;
 
-import smarthome.defendor.wifiwatchdog.webview.util.PreferencesHelper;
+import smarthome.defendor.wifiwatchdog.utils.PreferencesHelper;
 
 public class ConnectionTester {
 
