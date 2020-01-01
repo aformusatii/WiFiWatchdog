@@ -1,5 +1,7 @@
 package smarthome.defendor.wifiwatchdog.connection;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
+
 public class ConnectionResult {
 
     private boolean ok = false;
@@ -50,7 +52,7 @@ public class ConnectionResult {
 
     @Override
     public String toString() {
-        String exMsg = (exception == null) ? null : exception.getMessage();
+        String exMsg = (exception == null) ? null : ExceptionUtils.getStackTrace(exception);
         return String.format("status: [%s], conn: [%d], down: [%d], size: [%d], ex: [%s]", ok, connectionTime, downloadTime, payloadSize, exMsg);
     }
 }

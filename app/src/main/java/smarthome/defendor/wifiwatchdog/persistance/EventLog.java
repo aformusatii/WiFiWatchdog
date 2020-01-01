@@ -1,5 +1,7 @@
 package smarthome.defendor.wifiwatchdog.persistance;
 
+import org.apache.commons.lang3.exception.ExceptionUtils;
+
 import java.util.Date;
 
 import androidx.room.ColumnInfo;
@@ -21,6 +23,10 @@ public class EventLog {
 
     public EventLog(String log) {
         this.log = log;
+    }
+
+    public EventLog(String msg, Throwable exception) {
+        this.log = String.format(msg, ExceptionUtils.getStackTrace(exception));
     }
 
     public int getUid() {

@@ -1,3 +1,13 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: #FBEEC1;
+}
+
+div.settings {
+    padding: 10px;
+}
+
 div.settings div {
     padding: 10px 0 10px 0;
 }
@@ -15,11 +25,29 @@ input.settings {
     /* https://visme.co/blog/wp-content/uploads/2016/09/website3-1024x512.png */
     background-color: #659DBD;
     border-bottom: solid 1px #fff;
+    padding: 2px;
 }
 .item .date {
     padding-right: 5px;
 }
 
+.buttons {
+    padding: 10px 0 10px 0;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background-color: #FBEEC1;
+}
+
+.buttons-holder {
+    height: 57px;
+}
+
 button {
-    padding: 40px
+    padding: 10px 30px 10px 30px;
+    background-color: #8D8741;
+    border: solid 1px #BC986A;
+    color: #fff;
 }
